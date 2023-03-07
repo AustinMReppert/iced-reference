@@ -1,0 +1,6 @@
+[book]
+authors = ["Austin M. Reppert"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Iced"
