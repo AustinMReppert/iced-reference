@@ -25,7 +25,7 @@ serde_json = "1.0.94"
 ## Handling Basic UI Events
 New, view, and update presented in chapter 1 provide the basic blocks to manage state.
 
-View tells Iced how you want your state to be displayed. But view is also important because the way the UI is displayed will also change the Messages your UI produces from button clicks or other UI events. Lets look at an example to see how easy it is to update our state in response to basic UI events.
+View tells Iced how you want your state to be displayed by producing a tree of `Widgets`. This involves passing any state the Widgets need. For components that generate Messages, `view()` must tell that component the type of Message to generate. The actual logic to handle those Messages is handled in `update()`. This makes handling UI events easy. Lets look at an example to see how easy it is to update our state in response to basic UI events.
 
 ```rust
 use iced::alignment::{Horizontal, Vertical};
@@ -106,10 +106,10 @@ impl Application for HelloWorld {
 }
 ```
 
-We create a `current_time` field in our Application's state. It is initialized in `new()`. To render our state we convert it to a string and put it inside a Text Widget. We also create a Button that can update date the current time. The Message that our update button generates for on_press is specified by calling `.on_press(Message::UpdateTime)`. Notice how the `view()` isolates itself from `update()` logic by passing any necessary context into a Message. And in `update()` we check the type of Message and update the `current_time` state if the Message is of the UpdateTime variant.
+We create a `current_time` field in our Application's state. It is initialized in `new()`. To render our state we convert it to a string and put it inside a Text Widget. We also create a Button that can update the current time. The Message that our update button generates for on_press is specified by calling `.on_press(Message::UpdateTime)`. Notice how the `view()` isolates itself from `update()` logic by passing any necessary context into a Message. In `update()`, we check the type of Message and update the `current_time` state if the Message is of the UpdateTime variant.
 
 
-This scenario is the simplest to handle. The Button Widget does the heavy lifting for handling events, we only need to tell it what type of message we want. Not all events are as simple to handle.
+This scenario is the simplest to handle. The Button Widget does the heavy lifting for handling events, we only need to tell it what type of Message we want. Not all events are as simple to handle.
 
 Consider how you could automatically produce an UpdateTime Message with only new, view, and update.
 
