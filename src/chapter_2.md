@@ -172,8 +172,38 @@ pub struct Subscription<Hasher, Event, Output> {
     recipes: Vec<Box<dyn Recipe<Hasher, Event, Output = Output>>>,
 }
 ```
+And into Recipe...
 
-The types are getting a bit complicated for worrying about GUI code at this point. But, you should be able to see that Subscription() allows us to run async code to continuously provide UI state changes.
+```rust
+/// The description of a [`Subscription`].
+///
+/// A [`Recipe`] is the internal definition of a [`Subscription`]. It is used
+/// by runtimes to run and identify subscriptions. You can use it to create your
+/// own!
+//...
+pub trait Recipe<Hasher: std::hash::Hasher, Event> {
+    /// The events that will be produced by a [`Subscription`] with this
+    /// [`Recipe`].
+    type Output;
+
+    /// Hashes the [`Recipe`].
+    ///
+    /// This is used by runtimes to uniquely identify a [`Subscription`].
+    fn hash(&self, state: &mut Hasher);
+
+    /// Executes the [`Recipe`] and produces the stream of events of its
+    /// [`Subscription`].
+    ///
+    /// It receives some stream of generic events, which is normally defined by
+    /// shells.
+    fn stream(
+        self: Box<Self>,
+        input: BoxStream<Event>,
+    ) -> BoxStream<Self::Output>;
+}
+```
+
+An Iced `Recipe` is similar to Tokio's Subscription. A `Subscription` is Vec of `Recipes`. `Recipes` are like Tokio's `Streams`. As long as they are kept alive, they can keep producing values or in this case Messages. Subscription() allows us to run async code to continuously provide UI state changes. 
 
 Lets incorporate subscription() into our timer to automatically update the time. We will let the button remain as a pause/unpause mechanism.
 
