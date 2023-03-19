@@ -6,11 +6,7 @@ Iced has a simple model for state. The type that implements the Application trai
 ## Cargo.toml
 We will need to add a few things to Cargo.toml.
 ```toml
-[package]
-name = "basic-state-subscription"
-version = "0.1.0"
-edition = "2021"
-
+# ...
 [dependencies]
 # The core intefaces for the iced framework.
 iced = { git = "https://github.com/iced-rs/iced", features = ["tokio"]}
