@@ -203,7 +203,7 @@ pub trait Recipe<Hasher: std::hash::Hasher, Event> {
 }
 ```
 
-An Iced `Recipe` is similar to Tokio's Subscription. A `Subscription` is Vec of `Recipes`. As long as they are kept alive, they can keep producing values or in this case Messages. Subscription() allows us to run async code to continuously provide UI state changes. 
+An Iced `Recipe` is similar to Tokio's Subscription. A `Subscription` is Vec of `Recipes`. As long as `Subscriptions` are kept alive, they can keep producing values or in this case Messages. Subscription() allows us to run async code to continuously provide UI state changes. 
 
 Lets incorporate subscription() into our timer to automatically update the time. We will let the button remain as a pause/unpause mechanism.
 
