@@ -25,6 +25,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
       - name: Download mdbook
         run: wget https://github.com/rust-lang/mdBook/releases/download/v0.4.28/mdbook-v0.4.28-x86_64-unknown-linux-gnu.tar.gz && tar -xf mdbook-v0.4.28-x86_64-unknown-linux-gnu.tar.gz
       - name: Build MdBook
