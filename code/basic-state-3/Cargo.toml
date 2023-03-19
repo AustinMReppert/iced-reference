@@ -7,7 +7,7 @@ edition = "2021"
 
 [dependencies]
 # The core intefaces for the iced framework.
-iced = { git = "https://github.com/iced-rs/iced", features = ["tokio"]}
+iced = { git = "https://github.com/iced-rs/iced"}
 # For time
 chrono = "0.2.16"
 

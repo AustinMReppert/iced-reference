@@ -4,7 +4,7 @@ Iced has a simple model for state. The type that implements the Application trai
 
 
 ## Cargo.toml
-We will need the chrono crate for this tutorial and we also need to add the tokio feature for iced.
+We will need to add a few things to Cargo.toml.
 ```toml
 [package]
 name = "basic-state-subscription"
@@ -322,7 +322,7 @@ To create Commands there are helper functions.
     }
 ```
 
-Lets look at an example creating a Command::Single with `perform()`. It's quite simple we simply need a future/(block of async code) and a Message to send when the async code is complete. Note the return type of the async code needs to match the Message contents.
+Lets look at an example creating a Command::Single with `perform()`. It's quite simple. We need a future/(block of async code) and a Message to send when the async code is complete. Note the return type of the async code needs to match the Message contents.
 
 ```rust
 use iced::alignment::{Horizontal, Vertical};

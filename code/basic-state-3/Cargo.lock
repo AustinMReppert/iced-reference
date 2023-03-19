@@ -1102,7 +1102,6 @@ source = "git+https://github.com/iced-rs/iced#8f14b448d263a2cfd03a998b1d54c21e33
 dependencies = [
  "futures",
  "log",
- "tokio",
  "wasm-bindgen-futures",
  "wasm-timer",
 ]
