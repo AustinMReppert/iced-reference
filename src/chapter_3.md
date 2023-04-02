@@ -308,7 +308,8 @@ impl Application for HelloWorld {
 
 Typically you will choose a theme so that you application looks similar to other applications on your OS. Unless you are using PopOS's Cosmic you will have to either create your own theme or use the default Iced theme.
 
-To create your own theme you simply need to: 1. Implement required Stylesheet traits + Default on your theme type
+To create your own theme you simply need to: 
+1. Implement required Stylesheet traits + Default on your theme type
 2. Provide your theme type to Application.
 3. Provide your theme type to view's return type.
 
