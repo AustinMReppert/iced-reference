@@ -195,7 +195,7 @@ pub trait StyleSheet {
 
 There are functions for the different states of a `Button`, but they all return an `Appearance` struct. We also see there is an associated type: `type Style: Default`. This is the type that the `.style()` function requires. It is used to store additional information needed in the different stylesheet functions. Since it is an associated type we have to look at the actual value in `iced::Theme` to see what the `button.style()` function requires. A "theme" is simply a type with Stylsheet traits implemented on it.
 
-``rust
+```rust
 /// A built-in theme.
 #[derive(Debug, Clone, PartialEq, Default)]
 pub enum Theme {
