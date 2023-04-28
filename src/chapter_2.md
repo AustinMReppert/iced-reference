@@ -115,7 +115,7 @@ Consider how you could automatically produce an UpdateTime Message with only new
 
 ## Subscriptions
 
-To handle more general events we will take a loot at `subscription()` from the Application trait.
+To handle more general events we will take a look at `subscription()` from the Application trait.
 
 ```rust
     /// Returns the event [`Subscription`] for the current state of the
@@ -203,9 +203,9 @@ pub trait Recipe<Hasher: std::hash::Hasher, Event> {
 }
 ```
 
-An Iced `Recipe` is similar to Tokio's Subscription. A `Subscription` is Vec of `Recipes`. As long as `Subscriptions` are kept alive, they can keep producing values or in this case Messages. Subscription() allows us to run async code to continuously provide UI state changes. 
+An Iced `Recipe` is similar to Tokio's Subscription. A `Subscription` is a Vec of `Recipes`. As long as `Subscriptions` are kept alive, they can keep producing values or in this case Messages. `subscription()` allows us to run async code to continuously provide UI state changes. 
 
-Lets incorporate subscription() into our timer to automatically update the time. We will let the button remain as a pause/unpause mechanism.
+Lets incorporate `subscription()` into our timer to automatically update the time. We will let the button remain as a pause/unpause mechanism.
 
 ```rust
 use iced::alignment::{Horizontal, Vertical};
