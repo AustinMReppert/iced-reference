@@ -62,7 +62,7 @@ All Iced GUIs start with an Application trait implemented on a struct. The Appli
 ### Executor
 Specifies which runtime will run async Iced code. This may change depending on your target platform i.e. desktop/web/etc.
 ### Message
-Message is a type used by your application when any UI state changes occur. It must implement Debug and Send(indicates a type can be sent across threads) traits.
+Message is a type used by your application when any UI state changes occur. It must implement Debug and Send (indicates a type which can be sent across threads) traits.
 Because this type will be used for application Messages, it should be fast and ergonomic to pass around. Deriving the Clone and Copy traits is the easiest way to do this.
 Message will usually be an enum because it has to encode all possible UI events.
 ### Theme
@@ -108,7 +108,7 @@ fn update(&mut self, message: Message) -> iced::Command<Self::Message> {
 }
 ```
 Notice update has a mutable reference to the UI data allowing us to centralize modifications to our data.
-This pattern plays well with the design pattern. Similar to new, update can return a Command for asyn operations like downloading a file.
+This pattern plays well with the design pattern. Similar to new, update can return a Command for async operations like downloading a file.
 
 ---
 
