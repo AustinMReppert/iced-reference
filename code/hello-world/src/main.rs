@@ -1,5 +1,5 @@
 use iced::widget::Text;
-use iced::{Command, executor, Application, Element, Settings, Theme};
+use iced::{executor, Application, Command, Element, Settings, Theme};
 
 pub fn main() -> iced::Result {
   HelloWorld::run(Settings::default())
@@ -16,7 +16,7 @@ impl Application for HelloWorld {
   type Theme = Theme;
   type Flags = ();
 
-  fn new(flags: Self::Flags) -> (Self, iced::Command<Self::Message>) {
+  fn new(_flags: Self::Flags) -> (Self, Command<Self::Message>) {
     (HelloWorld {}, Command::none())
   }
 
@@ -24,7 +24,7 @@ impl Application for HelloWorld {
     String::from("Hello World!")
   }
 
-  fn update(&mut self, message: Message) -> iced::Command<Self::Message> {
+  fn update(&mut self, _message: Message) -> Command<Self::Message> {
     Command::none()
   }
 

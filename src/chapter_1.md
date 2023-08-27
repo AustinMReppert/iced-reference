@@ -18,7 +18,7 @@ iced = { git = "https://github.com/iced-rs/iced" }
 
 ```rust
 use iced::widget::Text;
-use iced::{Command, executor, Application, Element, Settings, Theme};
+use iced::{executor, Application, Command, Element, Settings, Theme};
 
 pub fn main() -> iced::Result {
   HelloWorld::run(Settings::default())
@@ -35,7 +35,7 @@ impl Application for HelloWorld {
   type Theme = Theme;
   type Flags = ();
 
-  fn new(flags: Self::Flags) -> (Self, iced::Command<Self::Message>) {
+  fn new(_flags: Self::Flags) -> (Self, Command<Self::Message>) {
     (HelloWorld {}, Command::none())
   }
 
@@ -43,7 +43,7 @@ impl Application for HelloWorld {
     String::from("Hello World!")
   }
 
-  fn update(&mut self, message: Message) -> iced::Command<Self::Message> {
+  fn update(&mut self, _message: Message) -> Command<Self::Message> {
     Command::none()
   }
 
@@ -75,7 +75,7 @@ Flags is a type for transferring information to your Iced Application at startup
 ### Setting-up an Application:
 #### 1. Setup Initial State with new()
 ```rust
-fn new(flags: Self::Flags) -> (Self, Command<Self::Message>) {
+fn new(_flags: Self::Flags) -> (Self, Command<Self::Message>) {
   (HelloWorld {}, Command::none())
 }
 ```
@@ -92,7 +92,7 @@ Widgets are structs implementing the Widget trait.
 ```rust
 pub trait Widget<Message, Renderer>
 where
-Renderer: crate::Renderer
+    Renderer: crate::Renderer
 ```
 Widgets are the link between raw UI data and Iced. Widgets know what data they have, how to render it, and when changes to the data should emit Messages.
 The Widget trait has a Renderer and a Message type parameter. Luckily, these are usually inferred.
@@ -103,7 +103,7 @@ An Element is a generic Widget that holds a Box to another Widget. Elements abst
 #### 3. Update UI State in response to UI Messages With update()
 Update is responsible for handling Messages and modifying UI state.
 ```rust
-fn update(&mut self, message: Message) -> iced::Command<Self::Message> {
+fn update(&mut self, _message: Message) -> Command<Self::Message> {
   Command::none()
 }
 ```
