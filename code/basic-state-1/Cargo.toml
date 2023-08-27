@@ -9,4 +9,4 @@ edition = "2021"
 # The core intefaces for the iced framework.
 iced = { git = "https://github.com/iced-rs/iced"}
 # For time
-chrono = "0.2.16"
+chrono = "0.4.26"

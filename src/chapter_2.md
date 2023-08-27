@@ -11,13 +11,10 @@ We will need to add a few things to Cargo.toml.
 # The core intefaces for the iced framework.
 iced = { git = "https://github.com/iced-rs/iced", features = ["tokio"]}
 # For time
-chrono = "0.2.16"
+chrono = "0.4.26"
 
-# For an HTTP client:
 reqwest = { version = "0.11", features = ["json"] }
-tokio = { version = "1", features = ["full"] }
 
-# For getting JSON out of the HTTP APIs:
 serde = { version = "1.0.157", features = ["derive"] }
 serde_json = "1.0.94"
 ```
