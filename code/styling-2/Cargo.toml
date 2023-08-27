@@ -7,5 +7,4 @@ edition = "2021"
 
 [dependencies]
 # The core intefaces for the iced framework.
-iced = { git = "https://github.com/iced-rs/iced" }
-iced_native = { git = "https://github.com/iced-rs/iced" }
+iced = { git = "https://github.com/iced-rs/iced"}

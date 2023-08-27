@@ -31,7 +31,7 @@ impl Application for HelloWorld {
 
   fn view(&self) -> Element<Message, iced::Renderer<Self::Theme>> {
     Element::<Message, iced::Renderer<Self::Theme>>::new(
-      iced_native::widget::Button::<Message, iced::Renderer<Self::Theme>>::new("Test").on_press(Message::Pressed).style(
+      iced::widget::Button::<Message, iced::Renderer<Self::Theme>>::new("Test").on_press(Message::Pressed).style(
         // style: <Theme as iced::widget::button::StyleSheet>::Style
       )
     )

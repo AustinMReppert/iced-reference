@@ -1,6 +1,6 @@
 use iced::widget::button::Appearance;
 use iced::widget::{button, Button};
-use iced::{executor, Application, Background, Color, Command, Element, Settings};
+use iced::{executor, Application, Background, BorderRadius, Color, Command, Element, Settings};
 
 pub fn main() -> iced::Result {
   HelloWorld::run(Settings::default())
@@ -18,7 +18,7 @@ struct CustomTheme {}
 impl iced::application::StyleSheet for CustomTheme {
   type Style = ();
 
-  fn appearance(&self, style: &Self::Style) -> iced::application::Appearance {
+  fn appearance(&self, _style: &Self::Style) -> iced::application::Appearance {
     iced::application::Appearance {
       background_color: Default::default(),
       text_color: Default::default(),
@@ -29,7 +29,7 @@ impl iced::application::StyleSheet for CustomTheme {
 impl iced::widget::text::StyleSheet for CustomTheme {
   type Style = ();
 
-  fn appearance(&self, style: Self::Style) -> iced::widget::text::Appearance {
+  fn appearance(&self, _style: Self::Style) -> iced::widget::text::Appearance {
     iced::widget::text::Appearance {
       color: Some(Color::new(0.0, 0.0, 0.0, 1.0)),
     }
@@ -39,11 +39,11 @@ impl iced::widget::text::StyleSheet for CustomTheme {
 impl button::StyleSheet for CustomTheme {
   type Style = ();
 
-  fn active(&self, style: &Self::Style) -> Appearance {
+  fn active(&self, _style: &Self::Style) -> Appearance {
     Appearance {
       shadow_offset: Default::default(),
       background: Some(Background::Color(Color::new(0.3, 0.4, 0.94, 1.0))),
-      border_radius: 0.0,
+      border_radius: BorderRadius::from(0.0),
       border_width: 0.0,
       border_color: Default::default(),
       text_color: Color::new(0.0, 0.0, 0.0, 1.0),

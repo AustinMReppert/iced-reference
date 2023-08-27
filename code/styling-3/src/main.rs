@@ -1,6 +1,6 @@
 use iced::widget::button::{Appearance, StyleSheet};
 use iced::widget::Button;
-use iced::{executor, Application, Color, Command, Element, Settings};
+use iced::{executor, Application, Color, Command, Element, Settings, BorderRadius};
 
 pub fn main() -> iced::Result {
   HelloWorld::run(Settings::default())
@@ -22,7 +22,7 @@ impl StyleSheet for CustomButtonStylesheet {
     Appearance {
       shadow_offset: Default::default(),
       background: None,
-      border_radius: 0.0,
+      border_radius: BorderRadius::from(0.0),
       border_width: 0.0,
       border_color: Default::default(),
       text_color: Color::new(1.0, 0.0, 0.0, 1.0),

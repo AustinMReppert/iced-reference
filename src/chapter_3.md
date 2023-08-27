@@ -96,7 +96,7 @@ impl Application for HelloWorld {
 
   fn view(&self) -> Element<Message, iced::Renderer<Self::Theme>> {
     Element::<Message, iced::Renderer<Self::Theme>>::new(
-      iced_native::widget::Button::<Message, iced::Renderer<Self::Theme>>::new("Test").on_press(Message::Pressed).style(
+      iced::widget::Button::<Message, iced::Renderer<Self::Theme>>::new("Test").on_press(Message::Pressed).style(
         // style: <Theme as iced::widget::button::StyleSheet>::Style
       )
     )
@@ -108,10 +108,10 @@ impl Application for HelloWorld {
 }
 ```
 
-The first thing you should notice is that Button is aliased to a `iced_native::widget::Button`. We also see that Rust uses our Application's `Theme` type as a parameter to the `Renderer`. `Widgets` take in a `Renderer` type as a parameter. This seems fairly obvious when you think about it. However, `Renderer` requiring a `Theme` type seems quite strange. It seems like all we should need to do is store some style properties like color in the Button itself and let the Button give style information to the Renderer. In that scenario, `Button` doesn't really do much other than store the Styles. Instead, Iced delegates the task of styling `Widgets` to Stylesheets. Stylesheets are simply traits that have functions to return a struct with a generic set of style properties for a `Widget`. Lets look at the button's stylesheet(iced::widget::button::StyleSheet).
+The first thing you should notice is that Button is aliased to a `iced::widget::Button`. We also see that Rust uses our Application's `Theme` type as a parameter to the `Renderer`. `Widgets` take in a `Renderer` type as a parameter. This seems fairly obvious when you think about it. However, `Renderer` requiring a `Theme` type seems quite strange. It seems like all we should need to do is store some style properties like color in the Button itself and let the Button give style information to the Renderer. In that scenario, `Button` doesn't really do much other than store the Styles. Instead, Iced delegates the task of styling `Widgets` to Stylesheets. Stylesheets are simply traits that have functions to return a struct with a generic set of style properties for a `Widget`. Lets look at the button's stylesheet(iced::widget::button::StyleSheet).
 
 ```rust
-//! Change the apperance of a button.
+//! Change the appearance of a button.
 use iced_core::{Background, Color, Vector};
 
 /// The appearance of a button.
@@ -122,7 +122,7 @@ pub struct Appearance {
     /// The [`Background`] of the button.
     pub background: Option<Background>,
     /// The border radius of the button.
-    pub border_radius: f32,
+    pub border_radius: BorderRadius,
     /// The border width of the button.
     pub border_width: f32,
     /// The border [`Color`] of the button.
@@ -136,7 +136,7 @@ impl std::default::Default for Appearance {
         Self {
             shadow_offset: Vector::default(),
             background: None,
-            border_radius: 0.0,
+            border_radius: 0.0.into(),
             border_width: 0.0,
             border_color: Color::TRANSPARENT,
             text_color: Color::BLACK,
@@ -242,7 +242,7 @@ So all `style()` really needs is a `Button` enum. There are some generic options
 ```rust
 use iced::widget::button::{Appearance, StyleSheet};
 use iced::widget::Button;
-use iced::{executor, Application, Color, Command, Element, Settings};
+use iced::{executor, Application, Color, Command, Element, Settings, BorderRadius};
 
 pub fn main() -> iced::Result {
   HelloWorld::run(Settings::default())
@@ -264,7 +264,7 @@ impl StyleSheet for CustomButtonStylesheet {
     Appearance {
       shadow_offset: Default::default(),
       background: None,
-      border_radius: 0.0,
+      border_radius: BorderRadius::from(0.0),
       border_width: 0.0,
       border_color: Default::default(),
       text_color: Color::new(1.0, 0.0, 0.0, 1.0),
@@ -316,7 +316,7 @@ To create your own theme you simply need to:
 ```rust
 use iced::widget::button::Appearance;
 use iced::widget::{button, Button};
-use iced::{executor, Application, Background, Color, Command, Element, Settings};
+use iced::{executor, Application, Background, BorderRadius, Color, Command, Element, Settings};
 
 pub fn main() -> iced::Result {
   HelloWorld::run(Settings::default())
@@ -334,7 +334,7 @@ struct CustomTheme {}
 impl iced::application::StyleSheet for CustomTheme {
   type Style = ();
 
-  fn appearance(&self, style: &Self::Style) -> iced::application::Appearance {
+  fn appearance(&self, _style: &Self::Style) -> iced::application::Appearance {
     iced::application::Appearance {
       background_color: Default::default(),
       text_color: Default::default(),
@@ -345,7 +345,7 @@ impl iced::application::StyleSheet for CustomTheme {
 impl iced::widget::text::StyleSheet for CustomTheme {
   type Style = ();
 
-  fn appearance(&self, style: Self::Style) -> iced::widget::text::Appearance {
+  fn appearance(&self, _style: Self::Style) -> iced::widget::text::Appearance {
     iced::widget::text::Appearance {
       color: Some(Color::new(0.0, 0.0, 0.0, 1.0)),
     }
@@ -355,11 +355,11 @@ impl iced::widget::text::StyleSheet for CustomTheme {
 impl button::StyleSheet for CustomTheme {
   type Style = ();
 
-  fn active(&self, style: &Self::Style) -> Appearance {
+  fn active(&self, _style: &Self::Style) -> Appearance {
     Appearance {
       shadow_offset: Default::default(),
       background: Some(Background::Color(Color::new(0.3, 0.4, 0.94, 1.0))),
-      border_radius: 0.0,
+      border_radius: BorderRadius::from(0.0),
       border_width: 0.0,
       border_color: Default::default(),
       text_color: Color::new(0.0, 0.0, 0.0, 1.0),
