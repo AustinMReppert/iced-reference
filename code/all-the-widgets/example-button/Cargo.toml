@@ -1,0 +1,11 @@
+[package]
+name = "example-button"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+# The core intefaces for the iced framework.
+iced = { git = "https://github.com/iced-rs/iced", features = ["debug"] }
+opener = "0.6.1"
