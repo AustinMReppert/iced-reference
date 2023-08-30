@@ -1,52 +1,20 @@
 mod utils;
 
-use std::fmt::{Display, Formatter};
-use iced::widget::{Button, Column, combo_box, ComboBox, Row, Rule, Scrollable, Space, Text};
-use iced::{executor, Application, Command, Element, Settings, Theme, theme, Color, Alignment};
+use iced::widget::{Column, Rule, Scrollable, Text};
+use iced::{executor, Application, Command, Element, Settings, Theme, Color, Alignment};
 
 pub fn main() -> iced::Result {
-  ButtonExample::run(Settings::default())
+  ColumnExample::run(Settings::default())
 }
 
 #[derive(Debug, Clone)]
 pub enum Message {
-  DoNothing,
   Open(String),
-  SelectedTheme(ButtonStyle),
 }
 
-#[derive(Debug, Clone, Copy)]
-pub enum ButtonStyle {
-  Primary,
-  Secondary,
-  Destructive,
-  Text,
-}
+struct ColumnExample {}
 
-impl Display for ButtonStyle {
-  fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-    match self {
-      ButtonStyle::Primary => write!(f, "Primary"),
-      ButtonStyle::Secondary => write!(f, "Secondary"),
-      ButtonStyle::Destructive => write!(f, "Destructive"),
-      ButtonStyle::Text => write!(f, "Text"),
-    }
-  }
-}
-
-struct ButtonExample {
-  combo_box_state: combo_box::State<ButtonStyle>,
-  selected_theme: ButtonStyle,
-}
-
-const ALL: [ButtonStyle; 4] = [
-  ButtonStyle::Primary,
-  ButtonStyle::Secondary,
-  ButtonStyle::Destructive,
-  ButtonStyle::Text,
-];
-
-impl Application for ButtonExample {
+impl Application for ColumnExample {
   type Executor = executor::Default;
   type Message = Message;
   type Theme = Theme;
@@ -54,9 +22,7 @@ impl Application for ButtonExample {
 
   fn new(_flags: Self::Flags) -> (Self, Command<Self::Message>) {
     (
-      ButtonExample {
-        combo_box_state: combo_box::State::new(ALL.to_vec()),
-        selected_theme: ButtonStyle::Destructive,
+      ColumnExample {
       },
       Command::none(),
     )
@@ -68,13 +34,8 @@ impl Application for ButtonExample {
 
   fn update(&mut self, message: Message) -> Command<Self::Message> {
     match message {
-      Message::DoNothing => {}
       Message::Open(url) => {
         opener::open(url).ok();
-      }
-      Message::SelectedTheme(selected_theme) => {
-        self.selected_theme = selected_theme;
-        self.combo_box_state.unfocus();
       }
     }
     Command::none()
