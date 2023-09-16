@@ -46,12 +46,12 @@ impl Application for ContainerExample {
   fn view(&self) -> Element<Message> {
     Scrollable::new(
       Column::with_children(vec![
-        utils::docs_link("Container", 36.0, Message::Open(String::from("https://docs.rs/iced/latest/iced/widget/struct.Contaienr.html"))),
+        utils::docs_link("Container", 36.0, Message::Open(String::from("https://docs.rs/iced/latest/iced/widget/struct.Container.html"))),
         Text::new("An element decorating some content. It is normally used for alignment purposes.").into(),
 
         Rule::horizontal(10).into(),
 
-        utils::docs_link("new", 24.0, Message::Open(String::from("https://docs.rs/iced/latest/iced/widget/struct.Contaienr.html#method.new"))),
+        utils::docs_link("new", 24.0, Message::Open(String::from("https://docs.rs/iced/latest/iced/widget/struct.Container.html#method.new"))),
         Element::new(Row::new()).explain(Color::BLACK),
         Text::new("Creates an empty Row. By default width and height will try to fit its children. An empty Row will be 0 by 0.").into(),
 
