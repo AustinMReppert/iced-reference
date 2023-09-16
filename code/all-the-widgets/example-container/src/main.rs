@@ -57,7 +57,7 @@ impl Application for ContainerExample {
 
         Rule::horizontal(10).into(),
 
-        utils::docs_link("height", 24.0, Message::Open(String::from("https://docs.rs/iced/latest/iced/widget/struct.Container.html#method.height"))),
+        utils::docs_link("width", 24.0, Message::Open(String::from("https://docs.rs/iced/latest/iced/widget/struct.Container.html#method.width"))),
         Element::new(Container::new(Text::new("Container")).width(50)).explain(Color::BLACK),
         Text::new("Sets the width of the Container.").into(),
 
